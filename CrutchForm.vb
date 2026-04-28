@@ -212,7 +212,7 @@ Public Class CrutchForm
         m_Host.SendText("#queue clear")
         m_Host.EchoText("#queue clear")
 
-        If m_Patient.Length > 0 And m_Patient IsNot "Self" Then
+        If m_Patient.Length > 0 And m_Patient <> "Self" Then
             SetParseTBPatient("break")
         End If
     End Sub
@@ -313,11 +313,11 @@ Public Class CrutchForm
             Case Crutch.WoundType.ScarExternal, Crutch.WoundType.ScarInternal
                 sTouchWSCommand &= " scar"
         End Select
-        If m_Patient IsNot "Self" Then
+        If m_Patient <> "Self" Then
             sTouchCommand &= sTouchBPCommand & sTouchEICommand & sTouchWSCommand & ""
             m_Host.SendText("#send " & PreCommand & sTouchCommand & PostCommand)
-        ElseIf m_Patient Is "Self" Then
-            If sTouchWSCommand Is " scar" Then
+        ElseIf m_Patient = "Self" Then
+            If sTouchWSCommand = " scar" Then
                 '                " & m_Host.SendText("GCSettingsManaHW") & "
                 m_Host.SendText("#send " & PreCommand & "prep hs " & m_Host.Variable("GCTextBoxManaHS") & ";-" & m_Host.Variable("GCTextBoxDelayHS") & "cast " & sTouchBPCommand)
             Else
@@ -332,27 +332,27 @@ Public Class CrutchForm
     End Sub
 
     Private Sub SetParseTBPatient(ByVal TBAction As String)
-        If m_Patient IsNot "Self" And m_Patient IsNot "Advanced" Then
+        If m_Patient <> "Self" And m_Patient <> "Advanced" Then
             m_Host.SendText("-.5" & TBAction & " " & m_Patient)
-        ElseIf m_Patient Is "Self" Then
+        ElseIf m_Patient = "Self" Then
             m_Host.SendText("-.5perceive self;-.1perceive health " & m_Patient)
-        ElseIf m_Patient Is "Advanced" Then
+        ElseIf m_Patient = "Advanced" Then
             m_Host.SendText("-.5perceive self")
         End If
     End Sub
 
     Private Sub TakeAll()
         If IsNothing(m_oWoundList) Then Exit Sub
-        If bLeaveBleeders = False And m_Patient IsNot "Self" Then
+        If bLeaveBleeders = False And bHalfOnMajor = False And m_Patient <> "Self" Then
             SetParseTBPatient("touch")
             m_Host.SendText("-.2take " & m_Patient & IIf(bQuickMode, " quick", "") & " all")
-        ElseIf bLeaveBleeders = True Or bHalfOnMajor = True Or m_Patient Is "Self" Then
+        ElseIf bLeaveBleeders = True Or bHalfOnMajor = True Or m_Patient = "Self" Then
             m_oWoundList.Sort()
             Dim bSkip As Boolean = False
             For Each obj As Wound In m_oWoundList
                 bSkip = False
 
-                If m_Patient Is "Self" And (obj.WoundType = Crutch.WoundType.FreshInternal Or obj.WoundType = Crutch.WoundType.ScarInternal) Then
+                If m_Patient = "Self" And (obj.WoundType = Crutch.WoundType.FreshInternal Or obj.WoundType = Crutch.WoundType.ScarInternal) Then
                     bSkip = True
                 End If
 
@@ -373,7 +373,7 @@ Public Class CrutchForm
                 End If
             Next
             '   Assume we should take scars for all wounds...
-            If bIncludeScars = True And m_Patient IsNot "Self" Then
+            If bIncludeScars = True And m_Patient <> "Self" Then
                 For Each obj As Wound In m_oWoundList
                     bSkip = False
 
@@ -396,7 +396,7 @@ Public Class CrutchForm
                 Next
             End If
 
-            If m_Patient IsNot "Self" Then m_Host.SendText("#send 5 touch " & m_Patient)
+            If m_Patient <> "Self" Then m_Host.SendText("#send 5 touch " & m_Patient)
         End If
 
     End Sub
@@ -404,7 +404,7 @@ Public Class CrutchForm
     Private Sub TakeMinorToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TakeMinorToolStripMenuItem.Click
         If IsNothing(m_oWoundList) Then Exit Sub
 
-        If m_Patient IsNot "Self" Then SetParseTBPatient("touch")
+        If m_Patient <> "Self" Then SetParseTBPatient("touch")
 
         m_oWoundList.Sort()
         Dim bSkip As Boolean = False
@@ -462,25 +462,25 @@ Public Class CrutchForm
     End Sub
 
     Private Sub HealthBar_Click()
-        If m_Patient IsNot "Self" Then
+        If m_Patient <> "Self" Then
             m_Host.SendText("#send -.5take " & m_Patient & " vitality")
-        ElseIf m_Patient Is "Self" Then
+        ElseIf m_Patient = "Self" Then
             m_Host.SendText("#send -.5prep VH " & m_Host.Variable("GCTextBoxManaVH") & ";-" & m_Host.Variable("GCTextBoxDelayVH") & "cast ")
         End If
     End Sub
 
     Private Sub Poison_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If m_Patient IsNot "Self" Then
+        If m_Patient <> "Self" Then
             m_Host.SendText("#send -.5take " & m_Patient & " poison")
-        ElseIf m_Patient Is "Self" Then
+        ElseIf m_Patient = "Self" Then
             m_Host.SendText("#send -.5prep FP " & m_Host.Variable("GCTextBoxManaFP") & ";-" & m_Host.Variable("GCTextBoxDelayFP") & "cast ")
         End If
     End Sub
 
     Private Sub Disease_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If m_Patient IsNot "Self" Then
+        If m_Patient <> "Self" Then
             m_Host.SendText("#send -.5take " & m_Patient & " disease")
-        ElseIf m_Patient Is "Self" Then
+        ElseIf m_Patient = "Self" Then
             m_Host.SendText("#send -.5prep CD " & m_Host.Variable("GCTextBoxManaCD") & ";-" & m_Host.Variable("GCTextBoxDelayCD") & "cast ")
         End If
     End Sub
@@ -502,7 +502,7 @@ Public Class CrutchForm
                 Exit Sub
             End If
         Next
-        If name Is "Advanced" Then
+        If name = "Advanced" Then
             Dim tab As New TabPage()
             Dim ct As New AdvancedSettingsTab()
             ct.CrutchForm = Me
@@ -546,33 +546,33 @@ Public Class CrutchForm
 
     Private Sub CrutchTab_TouchType(ByVal type As String)
         '        m_Host.SendText("#send take " & m_Patient & " " & type)
-        If type Is "vitality" Then
-            If m_Patient IsNot "Self" And m_Patient IsNot "Advanced" Then
+        If type = "vitality" Then
+            If m_Patient <> "Self" And m_Patient <> "Advanced" Then
                 m_Host.SendText("#send take " & m_Patient & " vitality" & IIf(bQuickMode, " quick", ""))
-            ElseIf m_Patient Is "Self" Or m_Patient Is "Advanced" Then
+            ElseIf m_Patient = "Self" Or m_Patient = "Advanced" Then
                 m_Host.SendText("#send -.5prep VH " & m_Host.Variable("GCTextBoxManaVH") & ";-" & m_Host.Variable("GCTextBoxDelayVH") & "cast ")
             End If
-        ElseIf type Is "poison" Then
-            If m_Patient IsNot "Self" And m_Patient IsNot "Advanced" Then
+        ElseIf type = "poison" Then
+            If m_Patient <> "Self" And m_Patient <> "Advanced" Then
                 m_Host.SendText("#send take " & m_Patient & IIf(bQuickMode, " quick", "") & " poison")
-            ElseIf m_Patient Is "Self" Or m_Patient Is "Advanced" Then
+            ElseIf m_Patient = "Self" Or m_Patient = "Advanced" Then
                 m_Host.SendText("#send -.5prep FP " & m_Host.Variable("GCTextBoxManaFP") & ";-" & m_Host.Variable("GCTextBoxDelayFP") & "cast ")
             End If
-        ElseIf type Is "disease" Then
-            If m_Patient IsNot "Self" And m_Patient IsNot "Advanced" Then
+        ElseIf type = "disease" Then
+            If m_Patient <> "Self" And m_Patient <> "Advanced" Then
                 m_Host.SendText("#send take " & m_Patient & IIf(bQuickMode, " quick", "") & " disease")
-            ElseIf m_Patient Is "Self" Or m_Patient Is "Advanced" Then
+            ElseIf m_Patient = "Self" Or m_Patient = "Advanced" Then
                 m_Host.SendText("#send -.5prep CD " & m_Host.Variable("GCTextBoxManaCD") & ";-" & m_Host.Variable("GCTextBoxDelayCD") & "cast ")
             End If
-        ElseIf type Is "REFR" And m_Patient Is "Advanced" Then
+        ElseIf type = "REFR" And m_Patient = "Advanced" Then
             m_Host.SendText("#send -.5prep refresh " & m_Host.Variable("GCTextBoxManaREFR") & ";-" & m_Host.Variable("GCTextBoxDelayREFR") & "cast ")
-        ElseIf type Is "HEAL" And m_Patient Is "Advanced" Then
+        ElseIf type = "HEAL" And m_Patient = "Advanced" Then
             m_Host.SendText("#send -.5prep heal " & m_Host.Variable("GCTextBoxManaHEAL") & ";-" & m_Host.Variable("GCTextBoxDelayHEAL") & "cast ")
-        ElseIf type Is "REGE" And m_Patient Is "Advanced" Then
+        ElseIf type = "REGE" And m_Patient = "Advanced" Then
             m_Host.SendText("#send -.5prep regen " & m_Host.Variable("GCTextBoxManaREGE") & ";-" & m_Host.Variable("GCTextBoxDelayREGE") & "cast ")
-        ElseIf type Is "BS" And m_Patient Is "Advanced" Then
+        ElseIf type = "BS" And m_Patient = "Advanced" Then
             m_Host.SendText("#send -.5prep bs " & m_Host.Variable("GCTextBoxManaBS") & ";-" & m_Host.Variable("GCTextBoxDelayBS") & "cast ")
-        ElseIf type Is "FOC" And m_Patient Is "Advanced" Then
+        ElseIf type = "FOC" And m_Patient = "Advanced" Then
             m_Host.SendText("#send -.5prep FOC " & m_Host.Variable("GCTextBoxManaFOC") & ";-" & m_Host.Variable("GCTextBoxDelayFOC") & "cast ")
         End If
     End Sub
@@ -581,7 +581,7 @@ Public Class CrutchForm
         TabPatients.Controls.Remove(TabPatients.SelectedTab)
     End Sub
     Private Sub AdvancedSettingsTab_TextBoxRW_TextChanged(ByVal section As String, ByVal child As String, ByVal value As String)
-        If value IsNot "" Then
+        If value <> "" Then
             m_Host.SendText("#var " & section & " " & value)
         End If
     End Sub
@@ -648,7 +648,7 @@ Public Class CrutchForm
         If e.Button = Windows.Forms.MouseButtons.Right Then
             m_TabIndex = TabControlHitTest(TabPatients, e.Location)
             cm_Patient = TabPatients.TabPages(m_TabIndex).Text
-            If m_TabIndex >= 0 And (cm_Patient IsNot "Self" And cm_Patient IsNot "Advanced") Then
+            If m_TabIndex >= 0 And (cm_Patient <> "Self" And cm_Patient <> "Advanced") Then
                 ContextMenuStrip1.Show(System.Windows.Forms.Control.MousePosition)
             End If
         End If
@@ -678,8 +678,8 @@ Public Class CrutchForm
         Dim cm_Patient As String
         Dim cm_option As String = Mid(e.ClickedItem.Text, 5)
         cm_Patient = TabPatients.TabPages(m_TabIndex).Text
-        If cm_Patient IsNot "Self" And cm_Patient IsNot "Advanced" Then
-            If e.ClickedItem.Text IsNot "Shift" Then
+        If cm_Patient <> "Self" And cm_Patient <> "Advanced" Then
+            If e.ClickedItem.Text <> "Shift" Then
                 If cm_option = " Persistent" Then
                     m_Host.SendText("#send -.25Touch " & cm_Patient & ";-.25Link " & cm_Patient & cm_option)
                 ElseIf cm_option = " Hodierna" Then
@@ -699,13 +699,17 @@ Public Class CrutchForm
         End If
     End Sub
     Private Sub ContextMenuClose_clicked(ByVal sender As Object, ByVal e As System.Windows.Forms.ToolStripItemClickedEventArgs) Handles ContextMenuStrip2.ItemClicked
-        If e.ClickedItem.Text Is "Close Tab" Then
+        If e.ClickedItem.Text = "Close Tab" Then
             TabPatients.TabPages.Remove(TabPatients.SelectedTab)
-        ElseIf e.ClickedItem.Text Is "Close Other Tabs" Then
+        ElseIf e.ClickedItem.Text = "Close Other Tabs" Then
+            Dim tabsToRemove As New List(Of TabPage)
             For Each tab As TabPage In TabPatients.TabPages
                 If tab IsNot TabPatients.SelectedTab Then
-                    TabPatients.TabPages.Remove(tab)
+                    tabsToRemove.Add(tab)
                 End If
+            Next
+            For Each tab As TabPage In tabsToRemove
+                TabPatients.TabPages.Remove(tab)
             Next
         End If
 
@@ -715,8 +719,8 @@ Public Class CrutchForm
         Dim cm_Patient As String
         Dim cm_option As String = e.ClickedItem.Text
         cm_Patient = TabPatients.TabPages(m_TabIndex).Text
-        If cm_Patient IsNot "Self" And cm_Patient IsNot "Advanced" Then
-            If e.ClickedItem.Text IsNot "Shift" Then
+        If cm_Patient <> "Self" And cm_Patient <> "Advanced" Then
+            If e.ClickedItem.Text <> "Shift" Then
                 m_Host.SendText("#send -.25Shift " & cm_Patient & cm_option)
             End If
 
