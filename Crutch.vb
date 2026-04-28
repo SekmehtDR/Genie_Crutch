@@ -69,6 +69,7 @@ Public Class Crutch
 
         If Not IsNothing(m_Host.ParentForm) Then
             m_Form.MdiParent = m_Host.ParentForm
+            m_Form.Hide() ' MdiParent assignment auto-shows the form; suppress until first touch
         End If
 
         ' Force HWND creation on the UI thread so InvokeRequired returns True
@@ -79,6 +80,10 @@ Public Class Crutch
         ' SetPinned earlier in LoadConfig() called UpdateMdiPinHandler when
         ' MdiParent was still Nothing, so the handler was silently skipped.
         m_Form.SetPinned(m_Form.TopMost)
+
+        ' MDI child setup and TopMost changes can re-show the form during
+        ' initialization. Suppress it — form appears on first touch only.
+        m_Form.Hide()
 
     End Sub
 
