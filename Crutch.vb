@@ -189,23 +189,27 @@ Public Class Crutch
                     m_Patient = "Self"
                     SetPatient(m_Patient)
                     m_bIsParsing = True
+                    m_iPoisonCount = 0
                     m_Form.ResetImages()
                 End If
 
                 If Text.StartsWith(m_Patient & "'s injuries include") Then
                     m_bIsParsing = True
+                    m_iPoisonCount = 0
                     m_Form.ResetImages()
                 End If
 
                 If Text.StartsWith("You sense :") Or Text.StartsWith("You close your eyes, drawing all your thoughts inward") Then
                     If Crutch.m_TWButton = False Then
                         m_bIsParsing = True
+                        m_iPoisonCount = 0
                     End If
                 End If
 
                 If Text.Trim.StartsWith("You close your eyes, centering your thoughts On your own life essence, but feel only an aching emptiness.") Then
                     m_Patient = "Self"
                     SetPatient(m_Patient)
+                    m_iPoisonCount = 0
                     m_Form.ResetImages()
                 End If
 
@@ -216,6 +220,7 @@ Public Class Crutch
                         m_Patient = match.Groups(1).Value
                         '                     m_Patient = Text.Substring(20).Replace(".", "").Replace(", a fellow Empath", "").Replace("  You also sense a faint greenish tinge about his life essence", "").Trim
                         SetPatient(m_Patient)
+                        m_iPoisonCount = 0
                         m_Form.ResetImages()
                     End If
                 End If
@@ -281,7 +286,7 @@ Public Class Crutch
                 End If
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            m_Host.EchoText("Crutch error: " & ex.Message & vbNewLine)
         End Try
 
         Return Text
