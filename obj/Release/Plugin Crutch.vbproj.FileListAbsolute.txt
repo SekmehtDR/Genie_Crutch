@@ -12,4 +12,6 @@ C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Plugin Crutch.vbproj.GenerateResou
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\GenieCrutch.dll
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\GenieCrutch.xml
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\GenieCrutch.pdb
-C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Plugin Crutch.vbprojResolveAssemblyReference.cache
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Plugin Crutch.vbproj.AssemblyReference.cache
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Plugin Crutch.vbproj.CoreCompileInputs.cache
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Plugin C.15854B25.Up2Date

@@ -75,6 +75,11 @@ Public Class Crutch
         ' correctly when ParseText is called from the game thread later.
         Dim dummy As IntPtr = m_Form.Handle
 
+        ' Re-apply pin state now that both MdiParent and the HWND are set.
+        ' SetPinned earlier in LoadConfig() called UpdateMdiPinHandler when
+        ' MdiParent was still Nothing, so the handler was silently skipped.
+        m_Form.SetPinned(m_Form.TopMost)
+
     End Sub
 
     Public Sub LoadConfig()
