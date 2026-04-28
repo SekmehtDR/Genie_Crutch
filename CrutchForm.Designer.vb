@@ -311,7 +311,7 @@ Partial Class CrutchForm
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Genie Crutch"
+        Me.Text = "Genie Crutch Remix"
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.MenuToolStrip1.ResumeLayout(False)
         Me.MenuToolStrip1.PerformLayout()

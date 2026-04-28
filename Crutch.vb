@@ -37,7 +37,7 @@ Public Class Crutch
 
     Public ReadOnly Property Description() As String Implements GeniePlugin.Interfaces.IPlugin.Description
         Get
-            Return "Updated Genie Crutch for new healing methods"
+            Return "Remix version, multiple bug fixes and modernization patches"
         End Get
     End Property
 
@@ -55,7 +55,7 @@ Public Class Crutch
 
     Public ReadOnly Property Version() As String Implements GeniePlugin.Interfaces.IPlugin.Version
         Get
-            Return "2.2.25"
+            Return "3.0.0"
         End Get
     End Property
 
