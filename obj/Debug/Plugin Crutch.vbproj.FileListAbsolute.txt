@@ -67,3 +67,21 @@ C:\Users\RAWR!\Dropbox\HackTheMatrix\Uncle J's Regex Rumba\trunkV2.0 - Copy\obj\
 C:\Users\RAWR!\Dropbox\HackTheMatrix\Uncle J's Regex Rumba\trunkV2.0 - Copy\obj\Debug\GenieCrutch.pdb
 C:\Users\RAWR!\Dropbox\HackTheMatrix\Uncle J's Regex Rumba\trunkV2.0 - Copy\obj\Debug\AdvancedSettingsTab.resources
 C:\Users\RAWR!\Dropbox\HackTheMatrix\Uncle J's Regex Rumba\trunkV2.0 - Copy\obj\Debug\Plugin Crutch.vbproj.AssemblyReference.cache
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\Plugin Crutch.vbproj.AssemblyReference.cache
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\Body.resources
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\AdvancedSettingsTab.resources
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\CrutchTab.resources
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\DialogTouchWho.resources
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\StatusBar.resources
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\CrutchForm.resources
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\Resources.resources
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\Plugin Crutch.vbproj.GenerateResource.cache
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\GenieCrutch.dll
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\GenieCrutch.xml
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\GenieCrutch.pdb
+c:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\Plugin Crutch.vbproj.CoreCompileInputs.cache
+c:\temp\Genie_Crutch\Genie_Crutch\bin\Debug\GenieCrutch.dll
+c:\temp\Genie_Crutch\Genie_Crutch\bin\Debug\GenieCrutch.pdb
+c:\temp\Genie_Crutch\Genie_Crutch\bin\Debug\GenieCrutch.xml
+c:\temp\Genie_Crutch\Genie_Crutch\bin\Debug\Interfaces.dll
+c:\temp\Genie_Crutch\Genie_Crutch\obj\Debug\Plugin C.15854B25.Up2Date

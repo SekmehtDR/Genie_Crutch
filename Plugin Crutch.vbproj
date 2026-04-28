@@ -120,6 +120,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TouchMessagesForm.vb" />
     <Compile Include="Wound.vb" />
     <Compile Include="XMLConfig.vb" />
   </ItemGroup>

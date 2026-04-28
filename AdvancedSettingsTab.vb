@@ -167,6 +167,12 @@ Public Class AdvancedSettingsTab
             TouchWho.Text = "TouchW"
         End If
     End Sub
+
+    Private Sub ButtonTouchMessages_Click(sender As Object, e As EventArgs) Handles ButtonTouchMessages.Click
+        Using dlg As New TouchMessagesForm()
+            dlg.ShowDialog(Me)
+        End Using
+    End Sub
 #End Region
 
 End Class

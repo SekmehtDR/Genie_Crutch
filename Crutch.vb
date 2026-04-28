@@ -1,6 +1,7 @@
 Imports System.Xml
 Imports System.Drawing
 Imports System.Text.RegularExpressions
+Imports System.Collections.Generic
 
 Public Class Crutch
     Implements GeniePlugin.Interfaces.IPlugin
@@ -11,6 +12,28 @@ Public Class Crutch
     Public Shared m_SHButton As Boolean = True
     Public Shared m_TWButton As Boolean = True
     Public Shared m_Shown As Boolean = False
+
+    Public Shared m_TouchPatterns As New List(Of String)
+    Public Shared m_ActivePatternIndex As Integer = 0
+    Private Shared m_ActivePatternRegex As Regex = Nothing
+
+    Public Shared Sub RebuildActiveRegex()
+        If m_TouchPatterns.Count > 0 AndAlso
+           m_ActivePatternIndex >= 0 AndAlso
+           m_ActivePatternIndex < m_TouchPatterns.Count Then
+            Dim pattern As String = m_TouchPatterns(m_ActivePatternIndex)
+            Dim nameIdx As Integer = pattern.IndexOf("{name}")
+            If nameIdx >= 0 Then
+                Dim prefix As String = Regex.Escape(pattern.Substring(0, nameIdx))
+                Dim suffix As String = Regex.Escape(pattern.Substring(nameIdx + 6))
+                m_ActivePatternRegex = New Regex("^" & prefix & "(.+?)" & suffix)
+            Else
+                m_ActivePatternRegex = Nothing
+            End If
+        Else
+            m_ActivePatternRegex = Nothing
+        End If
+    End Sub
 
     Public ReadOnly Property Description() As String Implements GeniePlugin.Interfaces.IPlugin.Description
         Get
@@ -48,6 +71,10 @@ Public Class Crutch
             m_Form.MdiParent = m_Host.ParentForm
         End If
 
+        ' Force HWND creation on the UI thread so InvokeRequired returns True
+        ' correctly when ParseText is called from the game thread later.
+        Dim dummy As IntPtr = m_Form.Handle
+
     End Sub
 
     Public Sub LoadConfig()
@@ -60,6 +87,7 @@ Public Class Crutch
             If section IsNot Nothing Then
                 m_Form.Top = Integer.Parse(m_Config.GetKeyValue(section, "Top", "10"))
                 m_Form.Left = Integer.Parse(m_Config.GetKeyValue(section, "Left", "10"))
+                m_Form.SetPinned(Boolean.Parse(m_Config.GetKeyValue(section, "Pinned", "False")))
             Else
                 section = m_Config.AddSection("Position")
                 m_Config.SetKeyValue(section, "Top", m_Form.Top.ToString())
@@ -68,6 +96,27 @@ Public Class Crutch
         Catch ex As Exception
             m_Host.EchoText("Could not load config file " & ex.Message & vbNewLine)
         End Try
+
+        ' Load touch message patterns
+        Try
+            Dim pSection As XmlNode = m_Config.GetSection("TouchPatterns")
+            m_TouchPatterns.Clear()
+            If pSection IsNot Nothing Then
+                m_ActivePatternIndex = Integer.Parse(m_Config.GetKeyValue(pSection, "ActiveIndex", "0"))
+                Dim count As Integer = Integer.Parse(m_Config.GetKeyValue(pSection, "Count", "0"))
+                For i As Integer = 0 To count - 1
+                    Dim p As String = m_Config.GetKeyValue(pSection, "Pattern" & i.ToString(), "")
+                    If p.Length > 0 Then m_TouchPatterns.Add(p)
+                Next
+            End If
+            If m_TouchPatterns.Count = 0 Then
+                m_TouchPatterns.Add("You sense a successful empathic link has been forged between you and {name}.")
+                m_ActivePatternIndex = 0
+            End If
+            RebuildActiveRegex()
+        Catch ex As Exception
+            m_Host.EchoText("Could not load touch patterns: " & ex.Message & vbNewLine)
+        End Try
     End Sub
 
     Public Sub SaveConfig()
@@ -75,8 +124,22 @@ Public Class Crutch
 
         Try
             node = m_Config.GetSection("Position")
-            m_Config.SetKeyValue(node, "Top", m_Form.Top.ToString())
-            m_Config.SetKeyValue(node, "Left", m_Form.Left.ToString())
+            If node IsNot Nothing Then
+                m_Config.SetKeyValue(node, "Top", m_Form.Top.ToString())
+                m_Config.SetKeyValue(node, "Left", m_Form.Left.ToString())
+                m_Config.SetKeyValue(node, "Pinned", m_Form.TopMost.ToString())
+            End If
+
+            Dim pSection As XmlNode = m_Config.GetSection("TouchPatterns")
+            If pSection Is Nothing Then
+                pSection = m_Config.AddSection("TouchPatterns")
+            End If
+            m_Config.SetKeyValue(pSection, "ActiveIndex", m_ActivePatternIndex.ToString())
+            m_Config.SetKeyValue(pSection, "Count", m_TouchPatterns.Count.ToString())
+            For i As Integer = 0 To m_TouchPatterns.Count - 1
+                m_Config.SetKeyValue(pSection, "Pattern" & i.ToString(), m_TouchPatterns(i))
+            Next
+
             m_Config.SaveConfig()
         Catch ex As Exception
             m_Host.EchoText("Could not save config file " & ex.Message & vbLf)
@@ -103,6 +166,7 @@ Public Class Crutch
     Private Sub SetPatient(ByRef Text As String)
         m_Form.Patient = m_Patient.Trim
         m_iPoisonCount = 0
+        m_Form.ShowMe()
     End Sub
 
     Public Function ParseText(Text As String, Window As String) As String Implements GeniePlugin.Interfaces.IPlugin.ParseText
@@ -113,9 +177,8 @@ Public Class Crutch
         Try
             If Not IsNothing(m_Host) And (Crutch.m_SHButton = True Or Crutch.m_Shown = True) Then
                 m_iCurrentWoundLevel = 0
-                If Text.StartsWith("You sense a successful empathic link has been forged between you and ") Then
-                    Dim regex As Regex = New Regex("^You sense a successful empathic link has been forged between you and ([^\.\!\,]+)[\.\!\,]")
-                    Dim match As Match = regex.Match(Text)
+                If m_ActivePatternRegex IsNot Nothing Then
+                    Dim match As Match = m_ActivePatternRegex.Match(Text)
                     If match.Success Then
                         m_Patient = match.Groups(1).Value
                         SetPatient(m_Patient)

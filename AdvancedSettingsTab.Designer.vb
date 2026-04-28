@@ -65,12 +65,16 @@ Partial Class AdvancedSettingsTab
         Me.LabelSpellFOC = New System.Windows.Forms.Label()
         Me.TextBoxManaFOC = New System.Windows.Forms.TextBox()
         Me.TextBoxDelayFOC = New System.Windows.Forms.TextBox()
+        Me.ButtonTouchMessages = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ButtonClose
         '
         Me.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ButtonClose.Image = Global.My.Resources.Resources.closeimg
+        Me.ButtonClose.Image = New System.Drawing.Bitmap(New System.IO.MemoryStream(System.Convert.FromBase64String(
+            "R0lGODlhDQALAIMAAOLi4tvb2+Hh4YyMjKGhoaWlpd7e3rW1tYCAgJmZmdbW1gAAAAAAAAAAAAAAAA" &
+            "AAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAAKACwAAAAADQALAAAIRQAVCBxIkCABBAcGHkBAgKCB" &
+            "AggVLCxgoOBDhggoFhRoIAGCBBU3SkQwIOLGiQIgJiQ4seLFlQIDAAipwACAACJz6iwYEAA7")))
         Me.ButtonClose.Location = New System.Drawing.Point(144, 5)
         Me.ButtonClose.Name = "ButtonClose"
         Me.ButtonClose.Size = New System.Drawing.Size(17, 17)
@@ -528,9 +532,19 @@ Partial Class AdvancedSettingsTab
         Me.TextBoxDelayFOC.TabIndex = 80
         Me.TextBoxDelayFOC.WordWrap = False
         '
+        'ButtonTouchMessages
+        '
+        Me.ButtonTouchMessages.Location = New System.Drawing.Point(12, 310)
+        Me.ButtonTouchMessages.Name = "ButtonTouchMessages"
+        Me.ButtonTouchMessages.Size = New System.Drawing.Size(141, 23)
+        Me.ButtonTouchMessages.TabIndex = 90
+        Me.ButtonTouchMessages.Text = "Touch Messages..."
+        Me.ButtonTouchMessages.UseVisualStyleBackColor = True
+        '
         'AdvancedSettingsTab
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
+        Me.Controls.Add(Me.ButtonTouchMessages)
         Me.Controls.Add(Me.LabelSpellFOC)
         Me.Controls.Add(Me.TextBoxManaFOC)
         Me.Controls.Add(Me.TextBoxDelayFOC)
@@ -575,7 +589,7 @@ Partial Class AdvancedSettingsTab
         Me.Controls.Add(Me.TextBoxManaCD)
         Me.Controls.Add(Me.TextBoxDelayCD)
         Me.Name = "AdvancedSettingsTab"
-        Me.Size = New System.Drawing.Size(165, 322)
+        Me.Size = New System.Drawing.Size(165, 345)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -623,4 +637,5 @@ Partial Class AdvancedSettingsTab
     Friend WithEvents LabelSpellFOC As Windows.Forms.Label
     Friend WithEvents TextBoxManaFOC As Windows.Forms.TextBox
     Friend WithEvents TextBoxDelayFOC As Windows.Forms.TextBox
+    Friend WithEvents ButtonTouchMessages As Windows.Forms.Button
 End Class

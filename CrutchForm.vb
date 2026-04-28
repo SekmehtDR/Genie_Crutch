@@ -168,6 +168,19 @@ Public Class CrutchForm
         End Set
     End Property
 
+    Public Sub SetPinned(ByVal pinned As Boolean)
+        If Me.InvokeRequired Then
+            Me.Invoke(Sub() SetPinned(pinned))
+            Return
+        End If
+        Me.TopMost = pinned
+        ToolStripButtonPin.Checked = pinned
+    End Sub
+
+    Private Sub ToolStripButtonPin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonPin.Click
+        Me.TopMost = ToolStripButtonPin.Checked
+    End Sub
+
     Private Sub Form_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles Me.Closing
         If m_IsClosing = False Then
             Me.Hide()

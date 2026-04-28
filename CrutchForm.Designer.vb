@@ -44,6 +44,7 @@ Partial Class CrutchForm
         Me.HalfOnMajorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LeaveBleedersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripButtonTakeAll = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonPin = New System.Windows.Forms.ToolStripButton()
         Me.AdvancedSettingForm = New System.Windows.Forms.ToolStripButton()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CloseTabToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -126,7 +127,7 @@ Partial Class CrutchForm
         'MenuToolStrip1
         '
         Me.MenuToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.MenuToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonTouch, Me.ToolStripButtonBreak, Me.ToolStripButtonTakeDropDown, Me.ToolStripButtonTakeAll, Me.AdvancedSettingForm})
+        Me.MenuToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonTouch, Me.ToolStripButtonBreak, Me.ToolStripButtonTakeDropDown, Me.ToolStripButtonTakeAll, Me.ToolStripButtonPin, Me.AdvancedSettingForm})
         Me.MenuToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuToolStrip1.Name = "MenuToolStrip1"
         Me.MenuToolStrip1.Size = New System.Drawing.Size(173, 25)
@@ -228,6 +229,16 @@ Partial Class CrutchForm
         Me.ToolStripButtonTakeAll.Text = "All"
         Me.ToolStripButtonTakeAll.ToolTipText = "Take All"
         '
+        'ToolStripButtonPin
+        '
+        Me.ToolStripButtonPin.CheckOnClick = True
+        Me.ToolStripButtonPin.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButtonPin.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonPin.Name = "ToolStripButtonPin"
+        Me.ToolStripButtonPin.Size = New System.Drawing.Size(25, 22)
+        Me.ToolStripButtonPin.Text = "📌"
+        Me.ToolStripButtonPin.ToolTipText = "Always on Top"
+        '
         'AdvancedSettingForm
         '
         Me.AdvancedSettingForm.Checked = True
@@ -290,7 +301,7 @@ Partial Class CrutchForm
         '
         'CrutchForm
         '
-        Me.ClientSize = New System.Drawing.Size(173, 373)
+        Me.ClientSize = New System.Drawing.Size(173, 396)
         Me.Controls.Add(Me.TabPatients)
         Me.Controls.Add(Me.MenuToolStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
@@ -323,6 +334,7 @@ Partial Class CrutchForm
     Friend WithEvents ToolStripMenuSeperator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents TakeAllToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripButtonTakeAll As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButtonPin As System.Windows.Forms.ToolStripButton
     Friend WithEvents LeaveBleedersToolStripMenuItem As Windows.Forms.ToolStripMenuItem
     Friend WithEvents AdvancedSettingForm As Windows.Forms.ToolStripButton
     Friend WithEvents ContextMenuStrip1 As Windows.Forms.ContextMenuStrip

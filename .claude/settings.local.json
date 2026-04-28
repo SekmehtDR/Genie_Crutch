@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"c:\\\\temp\\\\Genie_Crutch\\\\Genie_Crutch\\\\Plugin Crutch.vbproj\" /p:Configuration=Debug /v:minimal 2>&1)"
+    ]
+  }
+}
