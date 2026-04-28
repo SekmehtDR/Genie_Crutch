@@ -141,25 +141,20 @@ Public Class XMLConfig
     End Function
 
     Public Function GetKeyValue(ByVal Key As XmlNode, ByVal defValue As String) As String
-        Try
-            Return Key.InnerText
-        Catch
-            Return defValue
-        End Try
+        If Key Is Nothing Then Return defValue
+        Return Key.InnerText
     End Function
     Public Function GetKeyValue(ByVal Section As XmlNode, ByVal keyName As String, ByVal defValue As String) As String
-        Try
-            Return Section.SelectSingleNode(keyName).InnerText
-        Catch
-            Return defValue
-        End Try
+        If Section Is Nothing Then Return defValue
+        Dim node As XmlNode = Section.SelectSingleNode(keyName)
+        If node Is Nothing Then Return defValue
+        Return node.InnerText
     End Function
     Public Function GetKeyValue(ByVal Key As String, ByVal defValue As String) As String
-        Try
-            Return _configFile.SelectSingleNode(Key).InnerText
-        Catch
-            Return defValue
-        End Try
+        If _configFile Is Nothing Then Return defValue
+        Dim node As XmlNode = _configFile.SelectSingleNode(Key)
+        If node Is Nothing Then Return defValue
+        Return node.InnerText
     End Function
 #End Region
 

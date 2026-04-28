@@ -160,11 +160,12 @@ Public Class Crutch
     Private m_iPoisonCount As Integer = 0
     Private m_bIsParsing As Boolean = False
     Private m_oCurrentParsePart As Body.Part
+    Private m_bCurrentPartValid As Boolean = False
     Private m_oCurentWoundType As WoundType
     Private m_iCurrentWoundLevel As Integer = 0
 
-    Private Sub SetPatient(ByRef Text As String)
-        m_Form.Patient = m_Patient.Trim
+    Private Sub SetPatient(ByVal name As String)
+        m_Form.Patient = name.Trim
         m_iPoisonCount = 0
         m_Form.ShowMe()
     End Sub
@@ -248,27 +249,28 @@ Public Class Crutch
                     End If
 
                     If Text.StartsWith("Wounds to the ") Then
+                        m_bCurrentPartValid = False
                         SetParsePart(Text.Substring(14).Replace(":", "").Trim)
                     End If
 
                     If Text.StartsWith("  Fresh External:  ") Then
                         SetWoundLevel(Text.Substring(19).Trim)
-                        m_Form.UpdateImage(WoundType.FreshExternal, m_oCurrentParsePart, m_iCurrentWoundLevel)
+                        If m_bCurrentPartValid Then m_Form.UpdateImage(WoundType.FreshExternal, m_oCurrentParsePart, m_iCurrentWoundLevel)
                     End If
 
                     If Text.StartsWith("  Scars External:  ") Then
                         SetWoundLevel(Text.Substring(19).Trim)
-                        m_Form.UpdateImage(WoundType.ScarExternal, m_oCurrentParsePart, m_iCurrentWoundLevel)
+                        If m_bCurrentPartValid Then m_Form.UpdateImage(WoundType.ScarExternal, m_oCurrentParsePart, m_iCurrentWoundLevel)
                     End If
 
                     If Text.StartsWith("  Fresh Internal:  ") Then
                         SetWoundLevel(Text.Substring(19).Trim)
-                        m_Form.UpdateImage(WoundType.FreshInternal, m_oCurrentParsePart, m_iCurrentWoundLevel)
+                        If m_bCurrentPartValid Then m_Form.UpdateImage(WoundType.FreshInternal, m_oCurrentParsePart, m_iCurrentWoundLevel)
                     End If
 
                     If Text.StartsWith("  Scars Internal:  ") Then
                         SetWoundLevel(Text.Substring(19).Trim)
-                        m_Form.UpdateImage(WoundType.ScarInternal, m_oCurrentParsePart, m_iCurrentWoundLevel)
+                        If m_bCurrentPartValid Then m_Form.UpdateImage(WoundType.ScarInternal, m_oCurrentParsePart, m_iCurrentWoundLevel)
                     End If
 
                     If Text.Trim.EndsWith("poison") Or Text.Trim.EndsWith("Cyanide poison!") Or Text.Contains("poisoned") Then
@@ -313,34 +315,49 @@ Public Class Crutch
         Select Case Text
             Case "HEAD"
                 m_oCurrentParsePart = Body.Part.Head
+                m_bCurrentPartValid = True
             Case "RIGHT EYE"
                 m_oCurrentParsePart = Body.Part.RightEye
+                m_bCurrentPartValid = True
             Case "LEFT EYE"
                 m_oCurrentParsePart = Body.Part.LeftEye
+                m_bCurrentPartValid = True
             Case "NECK"
                 m_oCurrentParsePart = Body.Part.Neck
+                m_bCurrentPartValid = True
             Case "CHEST"
                 m_oCurrentParsePart = Body.Part.Chest
+                m_bCurrentPartValid = True
             Case "ABDOMEN"
                 m_oCurrentParsePart = Body.Part.Abdomen
+                m_bCurrentPartValid = True
             Case "RIGHT ARM"
                 m_oCurrentParsePart = Body.Part.RightArm
+                m_bCurrentPartValid = True
             Case "LEFT ARM"
                 m_oCurrentParsePart = Body.Part.LeftArm
+                m_bCurrentPartValid = True
             Case "RIGHT LEG"
                 m_oCurrentParsePart = Body.Part.RightLeg
+                m_bCurrentPartValid = True
             Case "LEFT LEG"
                 m_oCurrentParsePart = Body.Part.LeftLeg
+                m_bCurrentPartValid = True
             Case "RIGHT HAND"
                 m_oCurrentParsePart = Body.Part.RightHand
+                m_bCurrentPartValid = True
             Case "LEFT HAND"
                 m_oCurrentParsePart = Body.Part.LeftHand
+                m_bCurrentPartValid = True
             Case "BACK"
                 m_oCurrentParsePart = Body.Part.Back
+                m_bCurrentPartValid = True
             Case "SKIN"
                 m_oCurrentParsePart = Body.Part.Skin
+                m_bCurrentPartValid = True
             Case "TAIL"
                 m_oCurrentParsePart = Body.Part.Tail
+                m_bCurrentPartValid = True
         End Select
     End Sub
 

@@ -54,7 +54,7 @@ Public Class CrutchForm
     Public Sub SetVitality(ByVal Percent As Integer)
         If Me.InvokeRequired() = True Then
             Dim parameters() As Object = {Percent}
-            Me.Invoke(New SetPoisonDelegate(AddressOf SetVitalityInternal), parameters)
+            Me.Invoke(New SetVitalityDelegate(AddressOf SetVitalityInternal), parameters)
         Else
             SetVitalityInternal(Percent)
         End If
@@ -128,7 +128,7 @@ Public Class CrutchForm
     Public Sub UpdateImage(ByVal WoundType As Crutch.WoundType, ByVal BodyPart As Body.Part, ByVal Level As Integer)
         If Me.InvokeRequired() = True Then
             Dim parameters() As Object = {WoundType, BodyPart, Level}
-            Me.Invoke(New UpdateImageDelegate(AddressOf UpdateImage), parameters)
+            Me.Invoke(New UpdateImageDelegate(AddressOf UpdateImageInternal), parameters)
         Else
             UpdateImageInternal(WoundType, BodyPart, Level)
         End If

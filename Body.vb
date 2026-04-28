@@ -26,8 +26,8 @@ Public Class Body
         Select Case Part
             Case Body.Part.Head
                 Head.Color = Color
-                RightEye.BackColor = Color
-                LeftEye.BackColor = Color
+                RightEye.Color = Color
+                LeftEye.Color = Color
             Case Body.Part.Neck
                 Neck.Color = Color
             Case Body.Part.Chest
@@ -142,7 +142,6 @@ Public Class Body
         AddHandler Head.MouseLeave, AddressOf ElementHead_MouseLeave
         AddHandler LeftEye.MouseLeave, AddressOf Element_MouseLeave
         AddHandler RightEye.MouseLeave, AddressOf Element_MouseLeave
-        AddHandler Neck.MouseLeave, AddressOf Element_MouseLeave
         AddHandler Chest.MouseLeave, AddressOf Element_MouseLeave
         AddHandler Abdomen.MouseLeave, AddressOf Element_MouseLeave
         AddHandler LeftArm.MouseLeave, AddressOf Element_MouseLeave
@@ -170,16 +169,16 @@ Public Class Body
         sender.Tag = sender.Color
         sender.Color = Drawing.Color.Aquamarine
 
-        RightEye.BackColor = sender.Color
-        LeftEye.BackColor = sender.Color
+        RightEye.Color = sender.Color
+        LeftEye.Color = sender.Color
     End Sub
 
     ' Special for Eyes
     Private Sub ElementHead_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs)
         sender.Color = CType(sender.Tag, System.Drawing.Color)
 
-        RightEye.BackColor = sender.Color
-        LeftEye.BackColor = sender.Color
+        RightEye.Color = sender.Color
+        LeftEye.Color = sender.Color
     End Sub
 
     Private Sub Skin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Skin.Click
