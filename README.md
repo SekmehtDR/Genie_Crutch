@@ -1,5 +1,8 @@
-# Genie_Crutch (Modified for [Genie Remix](https://github.com/SekmehtDR/Genie_Remix))
- Added New Advanced tab and Self healing tab. Spell names on the advanced tab will highlight and bold on mouse-over and cast on click. Clicking body parts on the Self tab will cast HW and HS at the defaults set on the Advanced tab. The advanced tab is accessed by clicking the overflow just to the right of the "All" button and the Self healing tab is accessed by issuing a "Perceive Health Self". All self healing works more or less how it would for patient healing just that it casts spells instead. Can set toggles in advanced settings to disable crutch from parsing if it is not shown and to add patients through perceive health.
+# Genie_Crutch (Modified for [Genie Remix](https://github.com/SekmehtDR/Genie4_Remix))
+
+- Added .NET 10 compatibility
+
+Added New Advanced tab and Self healing tab. Spell names on the advanced tab will highlight and bold on mouse-over and cast on click. Clicking body parts on the Self tab will cast HW and HS at the defaults set on the Advanced tab. The advanced tab is accessed by clicking the overflow just to the right of the "All" button and the Self healing tab is accessed by issuing a "Perceive Health Self". All self healing works more or less how it would for patient healing just that it casts spells instead. Can set toggles in advanced settings to disable crutch from parsing if it is not shown and to add patients through perceive health.
  
  
 ![image](https://user-images.githubusercontent.com/100539902/156951851-76accf22-eb92-4beb-a912-39a687b8bdaf.png)
