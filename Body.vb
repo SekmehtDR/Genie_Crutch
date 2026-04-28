@@ -185,6 +185,45 @@ Public Class Body
         RaiseEvent BodyPartClicked(Part.Skin)
     End Sub
 
+    Private _scaling As Boolean = False
+
+    Protected Overrides Sub OnResize(ByVal e As System.EventArgs)
+        MyBase.OnResize(e)
+        If _scaling OrElse Me.Width <= 0 OrElse Me.Height <= 0 Then Return
+        _scaling = True
+        SuspendLayout()
+        Dim sx As Double = Me.Width / 63.0
+        Dim sy As Double = Me.Height / 134.0
+        ScalePart(Head,      12, 2,  34, 34, sx, sy)
+        ScalePart(Neck,      22, 35, 14, 9,  sx, sy)
+        ScalePart(Chest,     13, 43, 32, 23, sx, sy)
+        ScalePart(LeftArm,   44, 43, 12, 35, sx, sy)
+        ScalePart(RightArm,  2,  43, 12, 35, sx, sy)
+        ScalePart(Back,      13, 65, 32, 16, sx, sy)
+        ScalePart(Abdomen,   13, 80, 32, 16, sx, sy)
+        ScalePart(RightLeg,  13, 95, 13, 37, sx, sy)
+        ScalePart(LeftLeg,   32, 95, 13, 37, sx, sy)
+        ScalePart(RightHand, 2,  77, 12, 12, sx, sy)
+        ScalePart(LeftHand,  44, 77, 12, 12, sx, sy)
+        ScalePart(Tail,      6,  93, 8,  20, sx, sy)
+        ScalePart(RightEye,  16, 11, 12, 12, sx, sy)
+        ScalePart(LeftEye,   30, 11, 12, 12, sx, sy)
+        ScalePart(Skin,      47, 91, 15, 17, sx, sy)
+        LabelR.Location = New System.Drawing.Point(CInt(Math.Round(1  * sx)), CInt(Math.Round(28 * sy)))
+        LabelL.Location = New System.Drawing.Point(CInt(Math.Round(44 * sx)), CInt(Math.Round(28 * sy)))
+        ResumeLayout(False)
+        _scaling = False
+    End Sub
+
+    Private Shared Sub ScalePart(ctrl As System.Windows.Forms.Control,
+                                  dx As Integer, dy As Integer,
+                                  dw As Integer, dh As Integer,
+                                  sx As Double, sy As Double)
+        ctrl.SetBounds(CInt(Math.Round(dx * sx)), CInt(Math.Round(dy * sy)),
+                       Math.Max(1, CInt(Math.Round(dw * sx))),
+                       Math.Max(1, CInt(Math.Round(dh * sy))))
+    End Sub
+
 
     Private Sub MenuClick(ByRef sender As System.Object, ByRef Method As String)
         If TypeOf sender Is ToolStripMenuItem Then

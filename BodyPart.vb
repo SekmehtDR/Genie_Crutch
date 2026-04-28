@@ -13,7 +13,16 @@ Public Class BodyPart
         End If
 
         If Me.Text.Length > 0 Then
-            e.Graphics.DrawString(Me.Text, Me.Font, Brushes.White, 2, 2)
+            Dim fontSize As Single = Math.Max(6.0F, Me.Height * 0.55F)
+            Using sf As New System.Drawing.StringFormat()
+                sf.Alignment = System.Drawing.StringAlignment.Center
+                sf.LineAlignment = System.Drawing.StringAlignment.Center
+                sf.Trimming = System.Drawing.StringTrimming.None
+                Using fnt As New Font("Microsoft Sans Serif", fontSize, FontStyle.Regular, GraphicsUnit.Pixel)
+                    e.Graphics.DrawString(Me.Text, fnt, Brushes.White,
+                                         New RectangleF(0, 0, Me.Width, Me.Height), sf)
+                End Using
+            End Using
         End If
     End Sub
 

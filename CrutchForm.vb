@@ -181,6 +181,10 @@ Public Class CrutchForm
         Me.TopMost = ToolStripButtonPin.Checked
     End Sub
 
+    Private Sub ToolStripButtonResetSize_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonResetSize.Click
+        Me.ClientSize = New System.Drawing.Size(173, 396)
+    End Sub
+
     Private Sub Form_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles Me.Closing
         If m_IsClosing = False Then
             Me.Hide()
@@ -506,6 +510,7 @@ Public Class CrutchForm
             Dim tab As New TabPage()
             Dim ct As New AdvancedSettingsTab()
             ct.CrutchForm = Me
+            ct.Dock = DockStyle.Fill
 
             AddHandler ct.CloseTab, AddressOf CrutchTab_CloseTab
             AddHandler ct.TexboxRW_Changed, AddressOf AdvancedSettingsTab_TextBoxRW_TextChanged
@@ -521,6 +526,7 @@ Public Class CrutchForm
             Dim tab As New TabPage()
             Dim ct As New CrutchTab()
             ct.CrutchForm = Me
+            ct.Dock = DockStyle.Fill
 
             AddHandler ct.CloseTab, AddressOf CrutchTab_CloseTab
             AddHandler ct.TouchPart, AddressOf CrutchTab_TouchPart

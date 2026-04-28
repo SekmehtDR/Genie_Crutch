@@ -192,4 +192,40 @@ Public Class CrutchTab
     Private Sub ButtonClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonClose.Click
         RaiseEvent CloseTab()
     End Sub
+
+    Private _scaling As Boolean = False
+
+    Protected Overrides Sub OnResize(ByVal e As System.EventArgs)
+        MyBase.OnResize(e)
+        If _scaling OrElse Me.Width <= 0 OrElse Me.Height <= 0 Then Return
+        _scaling = True
+        SuspendLayout()
+        Dim sx As Double = Me.Width / 165.0
+        Dim sy As Double = Me.Height / 322.0
+        ScaleCtrl(BodyFreshExternal, 11,  25, 63, 134, sx, sy)
+        ScaleCtrl(BodyScarExternal,  94,  25, 63, 134, sx, sy)
+        ScaleCtrl(BodyFreshInternal, 11, 175, 63, 134, sx, sy)
+        ScaleCtrl(BodyScarInternal,  94, 175, 63, 134, sx, sy)
+        ScaleCtrl(LabelFE,            2, 158, 82,  13, sx, sy)
+        ScaleCtrl(LabelSE,           84, 158, 82,  13, sx, sy)
+        ScaleCtrl(LabelFI,            2, 308, 82,  13, sx, sy)
+        ScaleCtrl(LabelSI,           84, 308, 82,  13, sx, sy)
+        ScaleCtrl(Vitality,           5,   5, 135, 17, sx, sy)
+        ScaleCtrl(ButtonClose,      144,   5,  17, 17, sx, sy)
+        ScaleCtrl(Poison,            75,  27,  16, 17, sx, sy)
+        ScaleCtrl(Disease,           75,  50,  16, 17, sx, sy)
+        ScaleCtrl(PoisonCount,       92,  29,  10, 13, sx, sy)
+        ResumeLayout(False)
+        _scaling = False
+    End Sub
+
+    Private Shared Sub ScaleCtrl(ctrl As System.Windows.Forms.Control,
+                                  dx As Integer, dy As Integer,
+                                  dw As Integer, dh As Integer,
+                                  sx As Double, sy As Double)
+        ctrl.SetBounds(CInt(Math.Round(dx * sx)), CInt(Math.Round(dy * sy)),
+                       Math.Max(1, CInt(Math.Round(dw * sx))),
+                       Math.Max(1, CInt(Math.Round(dh * sy))))
+    End Sub
+
 End Class

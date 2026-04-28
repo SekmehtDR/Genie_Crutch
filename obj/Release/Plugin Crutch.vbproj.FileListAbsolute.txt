@@ -1,7 +1,6 @@
 C:\temp\Genie_Crutch\bin\Debug\GenieCrutch.dll
 C:\temp\Genie_Crutch\bin\Debug\GenieCrutch.pdb
 C:\temp\Genie_Crutch\bin\Debug\GenieCrutch.xml
-C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Plugin Crutch.vbproj.AssemblyReference.cache
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Body.resources
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\AdvancedSettingsTab.resources
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\CrutchTab.resources
@@ -10,8 +9,7 @@ C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\StatusBar.resources
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\CrutchForm.resources
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Resources.resources
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Plugin Crutch.vbproj.GenerateResource.cache
-C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Plugin Crutch.vbproj.CoreCompileInputs.cache
-C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Plugin C.15854B25.Up2Date
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\GenieCrutch.dll
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\GenieCrutch.xml
 C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\GenieCrutch.pdb
+C:\temp\Genie_Crutch\Genie_Crutch\obj\Release\Plugin Crutch.vbprojResolveAssemblyReference.cache

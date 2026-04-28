@@ -47,6 +47,7 @@ Public Class AdvancedSettingsTab
         RaiseEvent CloseTab()
     End Sub
 
+
     Private Sub SpellName_Enter(sender As Object, e As EventArgs) Handles LabelSpellVH.MouseEnter, LabelSpellREGE.MouseEnter, LabelSpellREFR.MouseEnter, LabelSpellHeal.MouseEnter, LabelSpellFP.MouseEnter, LabelSpellCD.MouseEnter, LabelSpellBS.MouseEnter, LabelSpellFOC.MouseEnter
         Dim fle As Label = DirectCast(sender, Label)
         fle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)

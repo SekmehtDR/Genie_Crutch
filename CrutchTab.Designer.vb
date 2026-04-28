@@ -140,7 +140,6 @@ Partial Class CrutchTab
         'BodyScarInternal
         '
         Me.BodyScarInternal.Location = New System.Drawing.Point(94, 175)
-        Me.BodyScarInternal.MinimumSize = New System.Drawing.Size(63, 134)
         Me.BodyScarInternal.Name = "BodyScarInternal"
         Me.BodyScarInternal.Size = New System.Drawing.Size(63, 134)
         Me.BodyScarInternal.TabIndex = 21
@@ -148,7 +147,6 @@ Partial Class CrutchTab
         'BodyFreshInternal
         '
         Me.BodyFreshInternal.Location = New System.Drawing.Point(11, 175)
-        Me.BodyFreshInternal.MinimumSize = New System.Drawing.Size(63, 134)
         Me.BodyFreshInternal.Name = "BodyFreshInternal"
         Me.BodyFreshInternal.Size = New System.Drawing.Size(63, 134)
         Me.BodyFreshInternal.TabIndex = 20
@@ -156,7 +154,6 @@ Partial Class CrutchTab
         'BodyScarExternal
         '
         Me.BodyScarExternal.Location = New System.Drawing.Point(94, 25)
-        Me.BodyScarExternal.MinimumSize = New System.Drawing.Size(63, 134)
         Me.BodyScarExternal.Name = "BodyScarExternal"
         Me.BodyScarExternal.Size = New System.Drawing.Size(63, 134)
         Me.BodyScarExternal.TabIndex = 19
@@ -164,7 +161,6 @@ Partial Class CrutchTab
         'BodyFreshExternal
         '
         Me.BodyFreshExternal.Location = New System.Drawing.Point(11, 25)
-        Me.BodyFreshExternal.MinimumSize = New System.Drawing.Size(63, 134)
         Me.BodyFreshExternal.Name = "BodyFreshExternal"
         Me.BodyFreshExternal.Size = New System.Drawing.Size(63, 134)
         Me.BodyFreshExternal.TabIndex = 18

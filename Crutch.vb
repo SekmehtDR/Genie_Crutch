@@ -55,7 +55,7 @@ Public Class Crutch
 
     Public ReadOnly Property Version() As String Implements GeniePlugin.Interfaces.IPlugin.Version
         Get
-            Return "3.0.0"
+            Return "3.0.1"
         End Get
     End Property
 
@@ -87,6 +87,8 @@ Public Class Crutch
             If section IsNot Nothing Then
                 m_Form.Top = Integer.Parse(m_Config.GetKeyValue(section, "Top", "10"))
                 m_Form.Left = Integer.Parse(m_Config.GetKeyValue(section, "Left", "10"))
+                m_Form.Width = Integer.Parse(m_Config.GetKeyValue(section, "Width", m_Form.Width.ToString()))
+                m_Form.Height = Integer.Parse(m_Config.GetKeyValue(section, "Height", m_Form.Height.ToString()))
                 m_Form.SetPinned(Boolean.Parse(m_Config.GetKeyValue(section, "Pinned", "False")))
             Else
                 section = m_Config.AddSection("Position")
@@ -127,6 +129,8 @@ Public Class Crutch
             If node IsNot Nothing Then
                 m_Config.SetKeyValue(node, "Top", m_Form.Top.ToString())
                 m_Config.SetKeyValue(node, "Left", m_Form.Left.ToString())
+                m_Config.SetKeyValue(node, "Width", m_Form.Width.ToString())
+                m_Config.SetKeyValue(node, "Height", m_Form.Height.ToString())
                 m_Config.SetKeyValue(node, "Pinned", m_Form.TopMost.ToString())
             End If
 

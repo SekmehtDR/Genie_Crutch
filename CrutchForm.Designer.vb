@@ -46,6 +46,7 @@ Partial Class CrutchForm
         Me.ToolStripButtonTakeAll = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButtonPin = New System.Windows.Forms.ToolStripButton()
         Me.AdvancedSettingForm = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonResetSize = New System.Windows.Forms.ToolStripButton()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CloseTabToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseOtherTabsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -127,7 +128,7 @@ Partial Class CrutchForm
         'MenuToolStrip1
         '
         Me.MenuToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.MenuToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonTouch, Me.ToolStripButtonBreak, Me.ToolStripButtonTakeDropDown, Me.ToolStripButtonTakeAll, Me.ToolStripButtonPin, Me.AdvancedSettingForm})
+        Me.MenuToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonTouch, Me.ToolStripButtonBreak, Me.ToolStripButtonTakeDropDown, Me.ToolStripButtonTakeAll, Me.ToolStripButtonPin, Me.AdvancedSettingForm, Me.ToolStripButtonResetSize})
         Me.MenuToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuToolStrip1.Name = "MenuToolStrip1"
         Me.MenuToolStrip1.Size = New System.Drawing.Size(173, 25)
@@ -251,6 +252,15 @@ Partial Class CrutchForm
         Me.AdvancedSettingForm.Text = "Advanced"
         Me.AdvancedSettingForm.ToolTipText = "Advanced settings"
         '
+        'ToolStripButtonResetSize
+        '
+        Me.ToolStripButtonResetSize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButtonResetSize.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonResetSize.Name = "ToolStripButtonResetSize"
+        Me.ToolStripButtonResetSize.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButtonResetSize.Text = "↺"
+        Me.ToolStripButtonResetSize.ToolTipText = "Reset Window Size"
+        '
         'ContextMenuStrip2
         '
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseTabToolStripMenuItem, Me.CloseOtherTabsToolStripMenuItem})
@@ -304,7 +314,8 @@ Partial Class CrutchForm
         Me.ClientSize = New System.Drawing.Size(173, 396)
         Me.Controls.Add(Me.TabPatients)
         Me.Controls.Add(Me.MenuToolStrip1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
+        Me.MinimumSize = New System.Drawing.Size(185, 415)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "CrutchForm"
@@ -337,6 +348,7 @@ Partial Class CrutchForm
     Friend WithEvents ToolStripButtonPin As System.Windows.Forms.ToolStripButton
     Friend WithEvents LeaveBleedersToolStripMenuItem As Windows.Forms.ToolStripMenuItem
     Friend WithEvents AdvancedSettingForm As Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButtonResetSize As Windows.Forms.ToolStripButton
     Friend WithEvents ContextMenuStrip1 As Windows.Forms.ContextMenuStrip
     Friend WithEvents ToolStripMenuItem1 As Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As Windows.Forms.ToolStripMenuItem
