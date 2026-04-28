@@ -175,10 +175,30 @@ Public Class CrutchForm
         End If
         Me.TopMost = pinned
         ToolStripButtonPin.Checked = pinned
+        UpdateMdiPinHandler(pinned)
+    End Sub
+
+    Private Sub CrutchForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        UpdateMdiPinHandler(ToolStripButtonPin.Checked)
+    End Sub
+
+    Private Sub UpdateMdiPinHandler(ByVal enable As Boolean)
+        If IsNothing(Me.MdiParent) Then Return
+        RemoveHandler Me.MdiParent.MdiChildActivate, AddressOf MdiParent_MdiChildActivate
+        If enable Then
+            AddHandler Me.MdiParent.MdiChildActivate, AddressOf MdiParent_MdiChildActivate
+        End If
+    End Sub
+
+    Private Sub MdiParent_MdiChildActivate(ByVal sender As Object, ByVal e As System.EventArgs)
+        If ToolStripButtonPin.Checked Then
+            Me.BringToFront()
+        End If
     End Sub
 
     Private Sub ToolStripButtonPin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonPin.Click
         Me.TopMost = ToolStripButtonPin.Checked
+        UpdateMdiPinHandler(ToolStripButtonPin.Checked)
     End Sub
 
     Private Sub ToolStripButtonResetSize_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonResetSize.Click
