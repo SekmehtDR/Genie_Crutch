@@ -20,7 +20,6 @@ Partial Class CrutchForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CrutchForm))
         Me.TabPatients = New System.Windows.Forms.TabControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -137,7 +136,6 @@ Partial Class CrutchForm
         'ToolStripButtonTouch
         '
         Me.ToolStripButtonTouch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripButtonTouch.Image = CType(resources.GetObject("ToolStripButtonTouch.Image"), System.Drawing.Image)
         Me.ToolStripButtonTouch.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonTouch.Name = "ToolStripButtonTouch"
         Me.ToolStripButtonTouch.Size = New System.Drawing.Size(43, 22)
@@ -146,7 +144,6 @@ Partial Class CrutchForm
         'ToolStripButtonBreak
         '
         Me.ToolStripButtonBreak.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripButtonBreak.Image = CType(resources.GetObject("ToolStripButtonBreak.Image"), System.Drawing.Image)
         Me.ToolStripButtonBreak.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonBreak.Name = "ToolStripButtonBreak"
         Me.ToolStripButtonBreak.Size = New System.Drawing.Size(40, 22)
@@ -156,7 +153,6 @@ Partial Class CrutchForm
         '
         Me.ToolStripButtonTakeDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripButtonTakeDropDown.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TakeMinorToolStripMenuItem, Me.TakeAllToolStripMenuItem, Me.ToolStripMenuSeperator1, Me.IncludingInternalToolStripMenuItem, Me.IncludingScarsToolStripMenuItem, Me.ToolStripMenuSeperator2, Me.QuickToolStripMenuItem, Me.HalfOnMajorToolStripMenuItem, Me.LeaveBleedersToolStripMenuItem})
-        Me.ToolStripButtonTakeDropDown.Image = CType(resources.GetObject("ToolStripButtonTakeDropDown.Image"), System.Drawing.Image)
         Me.ToolStripButtonTakeDropDown.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonTakeDropDown.Name = "ToolStripButtonTakeDropDown"
         Me.ToolStripButtonTakeDropDown.Size = New System.Drawing.Size(43, 22)
@@ -226,7 +222,6 @@ Partial Class CrutchForm
         'ToolStripButtonTakeAll
         '
         Me.ToolStripButtonTakeAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripButtonTakeAll.Image = CType(resources.GetObject("ToolStripButtonTakeAll.Image"), System.Drawing.Image)
         Me.ToolStripButtonTakeAll.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonTakeAll.Name = "ToolStripButtonTakeAll"
         Me.ToolStripButtonTakeAll.Size = New System.Drawing.Size(25, 22)
@@ -239,7 +234,6 @@ Partial Class CrutchForm
         Me.AdvancedSettingForm.CheckOnClick = True
         Me.AdvancedSettingForm.CheckState = System.Windows.Forms.CheckState.Checked
         Me.AdvancedSettingForm.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.AdvancedSettingForm.Image = CType(resources.GetObject("AdvancedSettingForm.Image"), System.Drawing.Image)
         Me.AdvancedSettingForm.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AdvancedSettingForm.Name = "AdvancedSettingForm"
         Me.AdvancedSettingForm.Size = New System.Drawing.Size(64, 19)

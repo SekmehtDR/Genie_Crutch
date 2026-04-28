@@ -1,6 +1,16 @@
 ﻿Imports System.Drawing
+Imports System.IO
 
 Public Class CrutchTab
+
+    Public Sub New()
+        InitializeComponent()
+        Dim gifBytes As Byte() = Convert.FromBase64String(
+            "R0lGODlhDQALAIMAAOLi4tvb2+Hh4YyMjKGhoaWlpd7e3rW1tYCAgJmZmdbW1gAAAAAAAAAAAAAAAA" &
+            "AAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAAKACwAAAAADQALAAAIRQAVCBxIkCABBAcGHkBAgKCB" &
+            "AggVLCxgoOBDhggoFhRoIAGCBBU3SkQwIOLGiQIgJiQ4seLFlQIDAAipwACAACJz6iwYEAA7")
+        ButtonClose.Image = New Bitmap(New MemoryStream(gifBytes))
+    End Sub
     Public Event TouchPart(ByVal WoundType As Crutch.WoundType, ByVal BodyPart As Body.Part, ByVal PreCommand As String, ByVal PostCommand As String)
     Public Event TouchType(ByVal type As String)
     Public Event CloseTab()

@@ -22,7 +22,6 @@ Partial Class CrutchTab
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CrutchTab))
         Me.PoisonCount = New System.Windows.Forms.Label()
         Me.LabelSI = New System.Windows.Forms.Label()
         Me.LabelFI = New System.Windows.Forms.Label()
@@ -92,7 +91,6 @@ Partial Class CrutchTab
         'ButtonClose
         '
         Me.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ButtonClose.Image = CType(resources.GetObject("ButtonClose.Image"), System.Drawing.Image)
         Me.ButtonClose.Location = New System.Drawing.Point(144, 5)
         Me.ButtonClose.Name = "ButtonClose"
         Me.ButtonClose.Size = New System.Drawing.Size(17, 17)
