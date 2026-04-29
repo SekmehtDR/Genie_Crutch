@@ -221,7 +221,7 @@ Public Class Crutch
                     End If
                 End If
 
-                If Text.Trim.StartsWith("You close your eyes, centering your thoughts On your own life essence, but feel only an aching emptiness.") Then
+                If Text.Trim.StartsWith("You close your eyes, centering your thoughts on your own life essence, but feel only an aching emptiness.", StringComparison.OrdinalIgnoreCase) Then
                     m_Patient = "Self"
                     SetPatient(m_Patient)
                     m_iPoisonCount = 0

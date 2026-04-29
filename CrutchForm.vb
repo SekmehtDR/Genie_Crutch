@@ -388,7 +388,7 @@ Public Class CrutchForm
                     bSkip = True
                 End If
 
-                If obj.Level > 5 And (obj.WoundType = Crutch.WoundType.FreshExternal Or obj.WoundType = Crutch.WoundType.FreshInternal) Then
+                If bLeaveBleeders = True And obj.Level > 5 And (obj.WoundType = Crutch.WoundType.FreshExternal Or obj.WoundType = Crutch.WoundType.FreshInternal) Then
                     bSkip = True
                 End If
 
